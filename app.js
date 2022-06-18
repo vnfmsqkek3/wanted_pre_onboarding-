@@ -16,6 +16,7 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
+//Create 회사 등록
 app.post("/register", (req, res) => {
 	let data = { 
     채용포지션: req.body.채용포지션, 
@@ -29,20 +30,32 @@ app.post("/register", (req, res) => {
 		res
     .status(201)
     .header('Content-Type', 'application/json; charset=utf-8')
-    .send("성공")
+    .send("채용공고 생성 완료")
 	});
 });
 
+//잘 들어갔는지 보기위한 테스트용
 app.get("/view", (req, res) => {
 	let sql = "SELECT * FROM company";
 	let query = connection.query(sql, (err, result) => {
 		if (err) throw err;
-		//res.send(JSON.stringify({ status: 200, error: null, response: result }));
     res
     .status(200)
-    .send(result)
+    .send("채용공고 업데이트 완료")
 	});
 });
+
+  //update
+  app.put('/register/:id',(req,res)=>{
+    const sql = "UPDATE company SET ? WHERE 회사_id = " + req.params.id;
+    connection.query(sql,req.body,function (err, result, fields) {  
+      if (err) throw err;
+      res
+      .status(201)
+      .send(result)
+      });
+  });
+  
 
   app.listen(3000, () => {
     console.log("server started on port 3000...");
