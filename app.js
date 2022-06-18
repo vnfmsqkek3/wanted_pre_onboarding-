@@ -38,24 +38,35 @@ app.post("/register", (req, res) => {
 app.get("/view", (req, res) => {
 	let sql = "SELECT * FROM company";
 	let query = connection.query(sql, (err, result) => {
+
 		if (err) throw err;
     res
     .status(200)
-    .send("채용공고 업데이트 완료")
+    .send(result)
+    console.log(result)
 	});
 });
 
   //update
-  app.put('/register/:id',(req,res)=>{
-    const sql = "UPDATE company SET ? WHERE 회사_id = " + req.params.id;
-    connection.query(sql,req.body,function (err, result, fields) {  
-      if (err) throw err;
-      res
-      .status(201)
-      .send(result)
-      });
-  });
+app.put('/register/:id',(req,res)=>{
+  const sql = "UPDATE company SET ? WHERE 회사_id = " + req.params.id;
+  connection.query(sql,req.body,function (err, result, fields) {  
+    if (err) throw err;
+    res
+    .status(201)
+    .send(result)
+    });
+});
   
+
+//Delete User
+app.delete('/register/:id',(req, res) => {
+  let sql = "DELETE FROM company WHERE 회사_id="+req.params.id;
+  let query = connection.query(sql, (err, results) => {
+    if(err) throw err;
+      res.send(JSON.stringify("삭제 완료"));
+  });
+});
 
   app.listen(3000, () => {
     console.log("server started on port 3000...");
