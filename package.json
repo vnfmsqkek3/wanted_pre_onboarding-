@@ -1,0 +1,25 @@
+{
+  "name": "wanted_pre_onboarding",
+  "version": "1.0.0",
+  "description": "프리온보딩 백엔드 코스 3차 과제",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vnfmsqkek3/wanted_pre_onboarding.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vnfmsqkek3/wanted_pre_onboarding/issues"
+  },
+  "homepage": "https://github.com/vnfmsqkek3/wanted_pre_onboarding#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1",
+    "mysql": "^2.18.1"
+  }
+}
